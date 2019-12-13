@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+}
+
+.note-box{
+    border: 1px solid black;
+    width: 100%;
+    position: relative;
+    padding-left: 10px;
+    margin-top: 10px;
+    
+}
+
+.note-box button {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+
+}

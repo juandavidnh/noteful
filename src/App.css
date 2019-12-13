@@ -1,0 +1,19 @@
+header{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+.App{
+    display: flex;
+    flex-direction: row;
+}
+
+.SideBar{
+    flex-basis: 30%;
+}
+
+.Main{
+    flex-basis: 70%; 
+}
