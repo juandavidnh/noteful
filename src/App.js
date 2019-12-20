@@ -6,7 +6,7 @@ import NoteContent from './NoteContent';
 import NoteList from './NoteList';
 import GoBack from './GoBack';
 import './App.css';
-
+import { createBrowserHistory } from 'history';
 
 class App extends React.Component {  
   constructor(props){
@@ -54,6 +54,7 @@ class App extends React.Component {
   }
 
   deleteNote = (noteId) => {
+    const history = createBrowserHistory();
 
     fetch(`http://localhost:9090/notes/${noteId}`, {
       method: 'DELETE',
@@ -61,7 +62,8 @@ class App extends React.Component {
         'content-type': 'application/json'
       },
     })
-    .then(document.location.reload())
+    .then(history.push('/'))
+    .then(window.location.reload())
   }
 
   render(){
