@@ -8,13 +8,13 @@ class GoBack extends React.Component{
 
     render(){
         const note = this.context.notes.find(note => note.id === this.props.match.params.noteId);
-        const folder = this.context.folders.find(folder => folder.id === note.folderId);
+        const folder = typeof note === 'undefined' ? null : this.context.folders.find(folder => folder.id === note.folderId);
         return(
             <div className="go-back">
                 <div className="folder-item">
-                    <Link to={`/folder/${folder.id}`}>Go back</Link>
+                    <Link to={`/folder/${folder===null?' ':folder.id}`}>Go back</Link>
                 </div>
-                <h3>{folder.name}</h3>
+                <h3>{folder===null?' ':folder.name}</h3>
             </div>
         )
     }
