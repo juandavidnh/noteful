@@ -1,5 +1,5 @@
 import React from 'react';
-import notefulContext from './NotefulContext';
+import notefulContext from '../NotefulContext';
 import { Link } from 'react-router-dom';
 import './NoteList.css';
 
@@ -19,9 +19,9 @@ class NoteList extends React.Component{
         return(
             <div>
                 {formattedNotes}
-                <button>
+                <Link to="/add-note">
                     Add Note
-                </button>
+                </Link>
             </div>
         )
     }

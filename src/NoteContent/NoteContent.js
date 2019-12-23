@@ -1,5 +1,5 @@
 import React from 'react';
-import notefulContext from './NotefulContext'
+import notefulContext from '../NotefulContext'
 import './NoteContent.css';
 
 class NoteContent extends React.Component{
