@@ -3,10 +3,10 @@ import {createBrowserHistory} from 'history';
 import credentials from '../../../config';
 import notefulContext from '../../../NotefulContext';
 import ValidationError from '../../../ValidationError'
-import './AddFile.css';
+import './AddNote.css';
 
 
-class AddFile extends React.Component{
+class AddNote extends React.Component{
     static contextType = notefulContext;
 
     constructor(props){
@@ -171,4 +171,4 @@ class AddFile extends React.Component{
     }
 }
 
-export default AddFile;
+export default AddNote;

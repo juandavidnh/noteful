@@ -7,7 +7,7 @@ import NoteContent from './Main/NoteContent/NoteContent';
 import NoteList from './Main/NoteList/NoteList';
 import GoBack from './Side/GoBack/GoBack';
 import AddFolder from './Side/FolderList/AddFolder/AddFolder';
-import AddFile from './Main/NoteList/AddFile/AddFile';
+import AddNote from './Main/NoteList/AddNote/AddNote';
 import NotefulError from './NotefulError'
 import './App.css';
 import { createBrowserHistory } from 'history';
@@ -129,7 +129,7 @@ class App extends React.Component {
         />
         <Route
           path='/add-note'
-          component={AddFile}
+          component={AddNote}
         />
       </section>
       </NotefulError>
