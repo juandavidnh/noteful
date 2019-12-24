@@ -1,5 +1,5 @@
 import React from 'react';
-import notefulContext from '../NotefulContext'
+import notefulContext from '../../NotefulContext'
 import { Link } from 'react-router-dom';
 import './GoBack.css';
 

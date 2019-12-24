@@ -2,12 +2,13 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import credentials from './config'
 import notefulContext from './NotefulContext';
-import FolderList from './FolderList/FolderList';
-import NoteContent from './NoteContent/NoteContent';
-import NoteList from './NoteList/NoteList';
-import GoBack from './GoBack/GoBack';
-import AddFolder from './FolderList/AddFolder/AddFolder';
-import AddFile from './NoteList/AddFile/AddFile';
+import FolderList from './Side/FolderList/FolderList';
+import NoteContent from './Main/NoteContent/NoteContent';
+import NoteList from './Main/NoteList/NoteList';
+import GoBack from './Side/GoBack/GoBack';
+import AddFolder from './Side/FolderList/AddFolder/AddFolder';
+import AddFile from './Main/NoteList/AddFile/AddFile';
+import NotefulError from './NotefulError'
 import './App.css';
 import { createBrowserHistory } from 'history';
 
@@ -90,6 +91,7 @@ class App extends React.Component {
     </header>
     <notefulContext.Provider value={contextValue}>
     <main className='App'>
+      <NotefulError>
       <section className='SideBar'>
         <Route 
           exact
@@ -105,6 +107,8 @@ class App extends React.Component {
           component={GoBack}
         />
       </section>
+      </NotefulError>
+      <NotefulError>
       <section className='Main'>
         <Route 
           exact
@@ -128,6 +132,7 @@ class App extends React.Component {
           component={AddFile}
         />
       </section>
+      </NotefulError>
     </main>
     </notefulContext.Provider>
     </>

@@ -1,6 +1,7 @@
 import React from 'react';
-import notefulContext from '../../NotefulContext';
-import credentials from '../../config';
+import notefulContext from '../../../NotefulContext';
+import credentials from '../../../config';
+import ValidationError from '../../../ValidationError'
 import { createBrowserHistory } from 'history';
 import './AddFolder.css'
 
@@ -10,7 +11,10 @@ class AddFolder extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
+            name: {
+                value: '',
+                touched: false
+            },
         }
     }
 
@@ -19,7 +23,7 @@ class AddFolder extends React.Component{
         const history = createBrowserHistory();
         const data = [];
         const details={
-            'name': this.state.name,
+            'name': this.state.name.value,
         };
          
         for(let property in details){
@@ -47,10 +51,23 @@ class AddFolder extends React.Component{
     }
 
     newName = (name) => {
-        this.setState({name: name});
+        this.setState({
+            name: {value: name, touched: true}
+        });
+    }
+
+    validateName() {
+        const name = this.state.name.value.trim();
+        if (name.length===0) {
+            return "Name is required"
+        } else if (name.length < 3){
+            return "Name must be at least 3 characters"
+        }
     }
 
     render() {
+        const nameError = this.validateName();
+
         return(
         <form className="add-folder" onSubmit={e => this.handleSubmit(e)}>
             <legend>Add Folder</legend>
@@ -58,9 +75,14 @@ class AddFolder extends React.Component{
             <input type="text" 
                 name="folder-name" 
                 id="folder-name" 
-                defaultValue="New Folder"
-                onChange={e => this.newName(e.target.value)}/>
-            <button type="submit">Add</button>
+                placeholder="New Folder"
+                onChange={e => this.newName(e.target.value)}
+                required/>
+            {this.state.name.touched &&
+            <ValidationError message={nameError}/>}
+            <button 
+                type="submit"
+                disabled={this.validateName()}>Add</button>
         </form>
         )
     }

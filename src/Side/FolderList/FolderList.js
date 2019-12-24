@@ -1,6 +1,5 @@
 import React from 'react';
-import notefulContext from '../NotefulContext';
-import AddFolder from './AddFolder/AddFolder'
+import notefulContext from '../../NotefulContext';
 import './FolderList.css';
 import { NavLink, Link } from 'react-router-dom';
 
@@ -20,9 +19,11 @@ class FolderList extends React.Component{
         return(
             <section className="folder-list">
                 {folders}
-                <Link to="/add-folder">
+                <div className="button">
+                <Link to="/add-folder" >
                     Add Folder
                 </Link>
+                </div>
             </section>
         )
     }

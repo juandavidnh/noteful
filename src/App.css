@@ -16,4 +16,5 @@ header{
 
 .Main{
     flex-basis: 70%; 
+    padding-bottom: 50px;
 }

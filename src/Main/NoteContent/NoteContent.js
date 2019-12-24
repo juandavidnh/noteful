@@ -1,5 +1,5 @@
 import React from 'react';
-import notefulContext from '../NotefulContext'
+import notefulContext from '../../NotefulContext'
 import './NoteContent.css';
 
 class NoteContent extends React.Component{
@@ -9,7 +9,7 @@ class NoteContent extends React.Component{
     render(){
         
         let noteContent = this.context.notes.find(note => note.id === this.props.match.params.noteId);
-
+        console.log(noteContent)
         return(
             <div>
                 <section className="note-box">
