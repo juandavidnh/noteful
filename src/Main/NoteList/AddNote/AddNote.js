@@ -132,6 +132,8 @@ class AddNote extends React.Component{
                 placeholder="Note Name"
                 onChange={e => this.updateName(e.target.value)}
                 required
+                aria-label="Choose a name for your note"
+                aria-required="true"
             />
             {this.state.name.touched &&
             <ValidationError message={nameError} />}
@@ -141,7 +143,9 @@ class AddNote extends React.Component{
                     placeholder="Select Folder"
                     defaultValue=''
                     onChange={e => this.updateFolderId(e.target.value)}
-                    required>
+                    required
+                    aria-label="Choose note's folder"
+                    aria-required="true">
                 <option value='' disabled hidden>Choose Here</option>
                 {folders.map((folder,i) => 
                     <option key={i} value={folder.name}>{folder.name}</option>
@@ -155,6 +159,8 @@ class AddNote extends React.Component{
                 id="note-content" 
                 onChange={e => this.updateContent(e.target.value)}
                 required
+                aria-label="Input note's content"
+                aria-required="true"
             />
             {this.state.content.touched &&
             <ValidationError message={contentError} />}

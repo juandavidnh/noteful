@@ -77,7 +77,10 @@ class AddFolder extends React.Component{
                 id="folder-name" 
                 placeholder="New Folder"
                 onChange={e => this.newName(e.target.value)}
-                required/>
+                required
+                aria-label="Name of new folder"
+                aria-required="true"
+                />
             {this.state.name.touched &&
             <ValidationError message={nameError}/>}
             <button 

@@ -8,9 +8,9 @@ class FolderList extends React.Component{
 
     render(){
         let folders = this.context.folders.map((folder, id) => (
-            <div className="folder-item" key={id}>
+            <div className="folder-item" key={id} >
                 <NavLink 
-                    to={`/folder/${folder.id}`}>
+                    to={`/folder/${folder.id}`} tabIndex={3}>
                         {folder.name}
                 </NavLink>
             </div>
@@ -19,8 +19,8 @@ class FolderList extends React.Component{
         return(
             <section className="folder-list">
                 {folders}
-                <div className="button">
-                <Link to="/add-folder" >
+                <div className="button" role="button" aria-pressed="false" >
+                <Link to="/add-folder" tabIndex={2}>
                     Add Folder
                 </Link>
                 </div>
