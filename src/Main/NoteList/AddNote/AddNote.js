@@ -139,9 +139,10 @@ class AddNote extends React.Component{
             <select name="note-folder" 
                     id="note-folder"
                     placeholder="Select Folder"
+                    defaultValue=''
                     onChange={e => this.updateFolderId(e.target.value)}
                     required>
-                <option value='' selected disabled hidden>Choose Here</option>
+                <option value='' disabled hidden>Choose Here</option>
                 {folders.map((folder,i) => 
                     <option key={i} value={folder.name}>{folder.name}</option>
                 )}

@@ -121,7 +121,10 @@ class App extends React.Component {
         />
         <Route 
           path='/note/:noteId'
-          component={NoteContent}
+          render={(props) => 
+            <NoteContent 
+              note = {contextValue.notes.find(note => note.id === props.match.params.noteId)}
+              />}
         />
         <Route
           path='/add-folder'
