@@ -21,23 +21,16 @@ class AddFolder extends React.Component{
     handleSubmit(event){
         event.preventDefault();
         const history = createBrowserHistory();
-        const data = [];
         const details={
-            'name': this.state.name.value,
+            'folder_name': this.state.name.value,
         };
-         
-        for(let property in details){
-            let encodedKey = encodeURIComponent(property);
-            let encodedValue = encodeURIComponent(details[property]);
-            data.push(encodedKey + "=" + encodedValue);
-        }
 
         fetch(`${credentials.baseUrl}/folders`, {
             method: "POST",
             headers: {
-                'Content-Type' : 'application/x-www-form-urlencoded',
+                'Content-Type' : 'application/json',
             },
-            body: data,
+            body: JSON.stringify(details),
         })
         .then(res => {
             if(!res.ok){
@@ -45,6 +38,7 @@ class AddFolder extends React.Component{
             }
             return res.json();
         })
+        .then(resJson => this.context.folders.push(resJson))
         .then(history.push('/'))
         .then(window.location.reload())
         .catch(error => alert(error))

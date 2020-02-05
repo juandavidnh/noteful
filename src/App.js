@@ -123,7 +123,7 @@ class App extends React.Component {
           path='/note/:noteId'
           render={(props) => 
             <NoteContent 
-              note = {contextValue.notes.find(note => note.id === props.match.params.noteId)}
+              note = {contextValue.notes.find(note => parseInt(note.id) === parseInt(props.match.params.noteId))}
               />}
         />
         <Route

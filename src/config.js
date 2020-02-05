@@ -1,5 +1,5 @@
 const credentials = {
-    baseUrl: 'http://localhost:9090',
+    baseUrl: 'http://localhost:8000/api',
 }
 
 export default credentials;

@@ -11,7 +11,7 @@ class FolderList extends React.Component{
             <div className="folder-item" key={id} >
                 <NavLink 
                     to={`/folder/${folder.id}`} tabIndex={3}>
-                        {folder.name}
+                        {folder.folder_name}
                 </NavLink>
             </div>
         ));

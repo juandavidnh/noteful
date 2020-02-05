@@ -15,13 +15,13 @@ class NoteList extends React.Component{
 
         return newDate; 
     }
-
+ßß
     render(){
-        
-        const filteredNotes = (typeof this.props.match.params.folderId !== 'undefined' ? this.context.notes.filter(note => note.folderId === this.props.match.params.folderId):this.context.notes )
+        //console.log(this.context);
+        const filteredNotes = (typeof this.props.match.params.folderId !== 'undefined' ? this.context.notes.filter(note => parseInt(note.folder_id) === parseInt(this.props.match.params.folderId)):this.context.notes )
         const formattedNotes = filteredNotes.map((note, id) => (
             <div className="note-box" key={id} >
-                <h3 className="note-name"><Link to={`/note/${note.id}`} tabIndex={4}>{note.name}</Link></h3>
+                <h3 className="note-name"><Link to={`/note/${note.id}`} tabIndex={4}>{note.note_name}</Link></h3>
                 <p className="date-modified">{this.convertDate(note.modified)}</p>
                 <button onClick={() => this.context.deleteNote(note.id)}>Delete Note</button>
             </div>)

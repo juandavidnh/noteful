@@ -35,28 +35,29 @@ class AddNote extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const history = createBrowserHistory();
-        const data = [];
+        //const data = [];
         const details={
-            'name': this.state.name.value,
+            'note_name': this.state.name.value,
             'modified': this.state.modified,
-            'folderId': this.state.folderId.value,
+            'folder_id': this.state.folderId.value,
             'content': this.state.content.value,
         };
          
-        for(let property in details){
+        /*for(let property in details){
             let encodedKey = encodeURIComponent(property);
             let encodedValue = encodeURIComponent(details[property]);
             data.push(encodedKey + "=" + encodedValue);
-        }
+        }*/
 
         fetch(`${credentials.baseUrl}/notes`, {
             method: "POST",
             headers: {
-                'Content-Type' : 'application/x-www-form-urlencoded',
+                'Content-Type' : 'application/json',
             },
-            body: data.join('&'),
+            body: JSON.stringify(details),
         })
         .then(res => {
+            console.log(res)
             if(!res.ok){
                 throw new Error();
             }
@@ -110,7 +111,7 @@ class AddNote extends React.Component{
     }
  
     updateFolderId = (folderName) => {
-        let folder = this.context.folders.find(folder => folder.name===folderName);
+        let folder = this.context.folders.find(folder => folder.folder_name===folderName);
         this.setState({
             folderId: {value: folder.id, touched: true}
         })
@@ -148,7 +149,7 @@ class AddNote extends React.Component{
                     aria-required="true">
                 <option value='' disabled hidden>Choose Here</option>
                 {folders.map((folder,i) => 
-                    <option key={i} value={folder.name}>{folder.name}</option>
+                    <option key={i} value={folder.name}>{folder.folder_name}</option>
                 )}
             </select>
             {this.state.folderId.touched &&
