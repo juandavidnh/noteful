@@ -15,9 +15,8 @@ class NoteList extends React.Component{
 
         return newDate; 
     }
-ßß
+
     render(){
-        //console.log(this.context);
         const filteredNotes = (typeof this.props.match.params.folderId !== 'undefined' ? this.context.notes.filter(note => parseInt(note.folder_id) === parseInt(this.props.match.params.folderId)):this.context.notes )
         const formattedNotes = filteredNotes.map((note, id) => (
             <div className="note-box" key={id} >

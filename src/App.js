@@ -25,7 +25,8 @@ class App extends React.Component {
     fetch(`${credentials.baseUrl}/folders`, {
       method: 'GET',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${credentials.API_KEY}`,
       },
     })
     .then(res => {
@@ -42,7 +43,8 @@ class App extends React.Component {
     fetch(`${credentials.baseUrl}/notes`, {
       method: 'GET',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${credentials.API_KEY}`,
       },
     })
     .then(res => {
@@ -63,18 +65,14 @@ class App extends React.Component {
     fetch(`${credentials.baseUrl}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${credentials.API_KEY}`,
       },
     })
-    /*.then(res => {
-      if(!res.ok){
-        throw new Error()
-      }
-      return res.json();
-    })*/
+    
     .then(history.push('/'))
     .then(window.location.reload())
-    //.catch(error => alert(error.message))
+    .catch(error => alert(error.message))
   }
 
   render(){

@@ -35,24 +35,18 @@ class AddNote extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const history = createBrowserHistory();
-        //const data = [];
         const details={
             'note_name': this.state.name.value,
             'modified': this.state.modified,
             'folder_id': this.state.folderId.value,
             'content': this.state.content.value,
         };
-         
-        /*for(let property in details){
-            let encodedKey = encodeURIComponent(property);
-            let encodedValue = encodeURIComponent(details[property]);
-            data.push(encodedKey + "=" + encodedValue);
-        }*/
 
         fetch(`${credentials.baseUrl}/notes`, {
             method: "POST",
             headers: {
                 'Content-Type' : 'application/json',
+                'Authorization': `Bearer ${credentials.API_KEY}`,
             },
             body: JSON.stringify(details),
         })
@@ -99,10 +93,6 @@ class AddNote extends React.Component{
             name: {value: name, touched: true}
         });
     }
-
-    /*updateDate = (date) => {
-        this.setState({modified: date});
-    }*/
 
     updateContent = (content) => {
         this.setState({
