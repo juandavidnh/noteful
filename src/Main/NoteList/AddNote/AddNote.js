@@ -43,7 +43,7 @@ class AddNote extends React.Component{
         };
 
         fetch(`${credentials.baseUrl}/notes`, {
-            method: "POST",
+            method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
                 'Authorization': `Bearer ${credentials.API_KEY}`,

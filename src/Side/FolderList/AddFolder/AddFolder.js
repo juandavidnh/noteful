@@ -26,7 +26,7 @@ class AddFolder extends React.Component{
         };
 
         fetch(`${credentials.baseUrl}/folders`, {
-            method: "POST",
+            method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
                 'Authorization': `Bearer ${credentials.API_KEY}`,
