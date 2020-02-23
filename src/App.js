@@ -66,7 +66,7 @@ class App extends React.Component {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${credentials.API_KEY}`,
+        'Authorization': `${credentials.API_KEY}`,
       },
     })
     
