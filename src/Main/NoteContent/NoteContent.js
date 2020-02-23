@@ -16,7 +16,6 @@ class NoteContent extends React.Component{
 
     render(){
         const note= this.props.note;
-        console.log(note)
         return(
             <div>
                 <section className="note-box">

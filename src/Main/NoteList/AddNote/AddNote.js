@@ -51,7 +51,6 @@ class AddNote extends React.Component{
             body: JSON.stringify(details),
         })
         .then(res => {
-            console.log(res)
             if(!res.ok){
                 throw new Error();
             }
