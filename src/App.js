@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
-import { useRouterHistory } from 'react-router';
 import credentials from './config';
 import notefulContext from './NotefulContext';
 import FolderList from './Side/FolderList/FolderList';
@@ -61,7 +60,7 @@ class App extends React.Component {
   }
 
   deleteNote = (noteId) => {
-    const history = useRouterHistory(createBrowserHistory);
+    const history = createBrowserHistory();
 
     fetch(`${credentials.baseUrl}/notes/${noteId}`, {
       method: 'DELETE',
