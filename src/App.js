@@ -60,8 +60,6 @@ class App extends React.Component {
   }
 
   deleteNote = (noteId) => {
-    const history = createBrowserHistory();
-
     fetch(`${credentials.baseUrl}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
@@ -118,11 +116,15 @@ class App extends React.Component {
         <Route 
           exact
           path='/'
-          component={NoteList}
+          render = {({history}) => {
+            return <NoteList />
+          }}
         />
         <Route 
           path='/folder/:folderId'
-          component={NoteList}
+          render = {({history}) => {
+            return <NoteList />
+          }}
         />
         <Route 
           path='/note/:noteId'
@@ -133,11 +135,15 @@ class App extends React.Component {
         />
         <Route
           path='/add-folder'
-          component={AddFolder}
+          render = {({history}) => {
+            return <AddFolder />
+          }}
         />
         <Route
           path='/add-note'
-          component={AddNote}
+          render = {({history}) => {
+            return <AddNote />
+          }}
         />
       </section>
       </NotefulError>
