@@ -1,6 +1,7 @@
 import React from 'react';
-import { useRouterHistory, Route, Link } from 'react-router-dom';
-import credentials from './config'
+import { Route, Link } from 'react-router-dom';
+import { useRouterHistory } from 'react-router';
+import credentials from './config';
 import notefulContext from './NotefulContext';
 import FolderList from './Side/FolderList/FolderList';
 import NoteContent from './Main/NoteContent/NoteContent';
