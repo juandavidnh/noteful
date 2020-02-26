@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { useRouterHistory, Route, Link } from 'react-router-dom';
 import credentials from './config'
 import notefulContext from './NotefulContext';
 import FolderList from './Side/FolderList/FolderList';
@@ -60,7 +60,7 @@ class App extends React.Component {
   }
 
   deleteNote = (noteId) => {
-    const history = createBrowserHistory();
+    const history = useRouterHistory(createBrowserHistory);
 
     fetch(`${credentials.baseUrl}/notes/${noteId}`, {
       method: 'DELETE',
@@ -69,9 +69,15 @@ class App extends React.Component {
         'Authorization': `Bearer ${credentials.API_KEY}`,
       },
     })
-    
+    .then(noteId => {
+      const newNotes = this.state.notes.filter(note => 
+        note.id!==noteId
+      )
+      this.setState({
+        notes: newNotes
+      })
+    })
     .then(history.push('/'))
-    .then(window.location.reload())
     .catch(error => alert(error.message))
   }
 
@@ -80,6 +86,7 @@ class App extends React.Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      addNote: this.addNote
     }
   
     return (

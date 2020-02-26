@@ -58,7 +58,7 @@ class AddNote extends React.Component{
         })
         .then(resJson => this.context.notes.push(resJson))
         .then(history.push('/'))
-        .then(window.location.reload())
+        //.then(window.location.reload())
         .catch(error => alert(error))
     }
 
