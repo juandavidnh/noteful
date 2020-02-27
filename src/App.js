@@ -84,6 +84,15 @@ class App extends React.Component {
     .catch(error => alert(error.message))
   }
 
+  addFolder = (newFolder) => {
+    let folderArrayCopy = this.state.folders;
+    folderArrayCopy.push(newFolder);
+
+    this.setState({
+      folders: folderArrayCopy
+    })
+  }
+
   addNote = (newNote) => {
     let noteArrayCopy = this.state.notes;
     noteArrayCopy.push(newNote);
@@ -147,7 +156,10 @@ class App extends React.Component {
         />
         <Route
           path='/add-folder'
-          component = {AddFolder}
+          render = {(history) => 
+            <AddFolder 
+              addFolder = {this.addFolder}
+              history = {browserHistory}/>}
         />
         <Route
           path='/add-note'
