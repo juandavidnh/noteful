@@ -2,7 +2,6 @@ import React from 'react';
 import notefulContext from '../../../NotefulContext';
 import credentials from '../../../config';
 import ValidationError from '../../../ValidationError'
-import { createBrowserHistory } from 'history';
 import './AddFolder.css'
 
 class AddFolder extends React.Component{
@@ -20,10 +19,11 @@ class AddFolder extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
-        const history = createBrowserHistory();
         const details={
             'folder_name': this.state.name.value,
         };
+
+        
 
         fetch(`${credentials.baseUrl}/folders`, {
             method: 'POST',
@@ -39,9 +39,7 @@ class AddFolder extends React.Component{
             }
             return res.json();
         })
-        .then(resJson => this.context.folders.push(resJson))
-        .then(history.push('/'))
-        .then(window.location.reload())
+        .then(this.props.history.push('/'))
         .catch(error => alert(error))
     }
 

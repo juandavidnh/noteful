@@ -12,6 +12,7 @@ import NotefulError from './NotefulError'
 import './App.css';
 import { createBrowserHistory } from 'history';
 
+
 class App extends React.Component {  
   constructor(props){
     super(props);
@@ -60,6 +61,9 @@ class App extends React.Component {
   }
 
   deleteNote = (noteId) => {
+    console.log(noteId)
+    const noteIdInt = noteId;
+
     fetch(`${credentials.baseUrl}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
@@ -67,16 +71,26 @@ class App extends React.Component {
         'Authorization': `Bearer ${credentials.API_KEY}`,
       },
     })
-    .then(noteId => {
+    .then(() => {
+      console.log(noteIdInt)
       const newNotes = this.state.notes.filter(note => 
-        note.id!==noteId
+        note.id!==noteIdInt
       )
+      console.log(newNotes)
       this.setState({
         notes: newNotes
       })
     })
-    .then(history.push('/'))
     .catch(error => alert(error.message))
+  }
+
+  addNote = (newNote) => {
+    let noteArrayCopy = this.state.notes;
+    noteArrayCopy.push(newNote);
+
+    this.setState({
+      notes: noteArrayCopy
+    })
   }
 
   render(){
@@ -86,6 +100,8 @@ class App extends React.Component {
       deleteNote: this.deleteNote,
       addNote: this.addNote
     }
+
+    const browserHistory = createBrowserHistory();
   
     return (
     <>
@@ -116,15 +132,11 @@ class App extends React.Component {
         <Route 
           exact
           path='/'
-          render = {({history}) => {
-            return <NoteList />
-          }}
+          component = {NoteList}
         />
         <Route 
           path='/folder/:folderId'
-          render = {({history}) => {
-            return <NoteList />
-          }}
+          component = {NoteList}
         />
         <Route 
           path='/note/:noteId'
@@ -135,15 +147,14 @@ class App extends React.Component {
         />
         <Route
           path='/add-folder'
-          render = {({history}) => {
-            return <AddFolder />
-          }}
+          component = {AddFolder}
         />
         <Route
           path='/add-note'
-          render = {({history}) => {
-            return <AddNote />
-          }}
+          render = {(history) => 
+          <AddNote 
+            addNote = {this.addNote}
+            history = {browserHistory}/>}
         />
       </section>
       </NotefulError>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {createBrowserHistory} from 'history';
 import credentials from '../../../config';
 import notefulContext from '../../../NotefulContext';
 import ValidationError from '../../../ValidationError'
@@ -34,13 +33,13 @@ class AddNote extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        const history = createBrowserHistory();
         const details={
             'note_name': this.state.name.value,
             'modified': this.state.modified,
             'folder_id': this.state.folderId.value,
             'content': this.state.content.value,
         };
+
 
         fetch(`${credentials.baseUrl}/notes`, {
             method: 'POST',
@@ -56,9 +55,11 @@ class AddNote extends React.Component{
             }
             return res.json();
         })
-        .then(resJson => this.context.notes.push(resJson))
-        .then(history.push('/'))
-        //.then(window.location.reload())
+        .then(resJson => {
+            this.props.addNote(resJson)
+            this.props.history.goBack()
+        })
+        
         .catch(error => alert(error))
     }
 
