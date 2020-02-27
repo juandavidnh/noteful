@@ -56,7 +56,7 @@ class AddNote extends React.Component{
             return res.json();
         })
         .then(resJson => {
-            this.props.addFolder(resJson)
+            this.props.addNote(resJson)
             this.props.history.goBack()
         })
         .catch(error => alert(error))
